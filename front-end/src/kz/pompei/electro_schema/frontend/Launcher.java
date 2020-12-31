@@ -1,8 +1,12 @@
 package kz.pompei.electro_schema.frontend;
 
 import kz.pompei.electro_schema.frontend.file_saver.FormPositionLook;
+import kz.pompei.electro_schema.frontend.model.Scene;
 
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import java.awt.KeyboardFocusManager;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.nio.file.Paths;
@@ -20,7 +24,9 @@ public class Launcher {
     var formPositionLook = new FormPositionLook(mainFormDir.resolve("positions").toFile());
     formPositionLook.register(frame, "main-form");
 
-    var paintPanel = new PaintPanel();
+    var scene = new Scene();
+
+    var paintPanel = new TopPaintPanel(scene);
 
     frame.setContentPane(paintPanel);
 
@@ -37,10 +43,18 @@ public class Launcher {
       }
     });
 
-    frame.setVisible(true);
+    KeyboardFocusManager.getCurrentKeyboardFocusManager()
+                        .addKeyEventDispatcher((KeyEvent e) -> {
+                          if (e.getID() == KeyEvent.KEY_PRESSED) {
+                            paintPanel.onKeyboardEvent(e);
+                          }
+                          return true;
+                        });
 
-    System.out.println("Zfi6pY5N70");
-
+    SwingUtilities.invokeLater(() -> {
+      frame.setVisible(true);
+      System.out.println("Zfi6pY5N70 frame visibility opened");
+    });
   }
 
 }
