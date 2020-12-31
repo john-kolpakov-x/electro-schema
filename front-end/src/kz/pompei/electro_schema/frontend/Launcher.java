@@ -2,7 +2,7 @@ package kz.pompei.electro_schema.frontend;
 
 import kz.pompei.electro_schema.frontend.file_saver.FormPositionLook;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.nio.file.Paths;
@@ -19,6 +19,10 @@ public class Launcher {
 
     var formPositionLook = new FormPositionLook(mainFormDir.resolve("positions").toFile());
     formPositionLook.register(frame, "main-form");
+
+    var paintPanel = new PaintPanel();
+
+    frame.setContentPane(paintPanel);
 
     frame.addWindowListener(new WindowAdapter() {
       @Override

@@ -1,6 +1,6 @@
 package kz.pompei.electro_schema.frontend.file_saver;
 
-import java.awt.*;
+import java.awt.Point;
 
 public class PointSerializer implements ObjectSerializer<Point> {
   @Override

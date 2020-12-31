@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class SavableThread {
 
-  private final Thread thread;
+  private final Thread        thread;
   private final AtomicBoolean working = new AtomicBoolean(true);
 
   public SavableThread() {
@@ -34,7 +34,7 @@ public class SavableThread {
     }
   }
 
-  private final AtomicInteger idNext = new AtomicInteger(1);
+  private final AtomicInteger                     idNext = new AtomicInteger(1);
   private final ConcurrentHashMap<Integer, Saver> savers = new ConcurrentHashMap<>();
 
   public void register(Saver saver) {

@@ -7,11 +7,11 @@ import java.util.Optional;
 
 public class FileAcceptor<T> implements Acceptor<T> {
 
-  private final Path file;
+  private final Path                file;
   private final ObjectSerializer<T> serializer;
 
   public FileAcceptor(Path file, ObjectSerializer<T> serializer) {
-    this.file = file;
+    this.file       = file;
     this.serializer = serializer;
   }
 

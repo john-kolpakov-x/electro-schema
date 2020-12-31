@@ -1,6 +1,6 @@
 package kz.pompei.electro_schema.frontend.file_saver;
 
-import java.awt.*;
+import java.awt.Dimension;
 
 public class DimensionSerializer implements ObjectSerializer<Dimension> {
   @Override
