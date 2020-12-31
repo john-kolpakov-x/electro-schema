@@ -22,7 +22,7 @@ public class GraphicsPen implements Pen {
 
   @Override
   public Pen copy() {
-    var ret = new GraphicsPen(g.create(), converter.copy());
+    var ret = new GraphicsPen(g.create(), converter);
     ret.converting = converting;
     return ret;
   }

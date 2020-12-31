@@ -34,8 +34,16 @@ public class Vec2 {
     return Vec2.xy(x + point.x, y + point.y);
   }
 
+  public Vec2 plus(double x, double y) {
+    return Vec2.xy(this.x + x, this.y + y);
+  }
+
   public Vec2 minus(Vec2 point) {
     return Vec2.xy(x - point.x, y - point.y);
+  }
+
+  public Vec2 minus(double x,double y) {
+    return Vec2.xy(this.x - x, this.y - y);
   }
 
   public double abs() {

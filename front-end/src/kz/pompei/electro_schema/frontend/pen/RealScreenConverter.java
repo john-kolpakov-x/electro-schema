@@ -2,8 +2,8 @@ package kz.pompei.electro_schema.frontend.pen;
 
 public class RealScreenConverter {
 
-  public double kx     = +1;
-  public double ky     = -1;
+  public double kx     = 1;
+  public double ky     = 1;
   public double deltaX = 0;
   public double deltaY = 0;
 
@@ -12,20 +12,9 @@ public class RealScreenConverter {
 
   public Vec2 toScreen(Vec2 realPoint) {
     return Vec2.xy(
-      realPoint.x * kx + deltaX + screenWidth / 2,
-      realPoint.y * ky + deltaY + screenHeight / 2
+      realPoint.x * kx + deltaX,
+      realPoint.y * ky + deltaY
     );
-  }
-
-  public RealScreenConverter copy() {
-    var a = new RealScreenConverter();
-    a.kx           = kx;
-    a.ky           = ky;
-    a.deltaX       = deltaX;
-    a.deltaY       = deltaY;
-    a.screenWidth  = screenWidth;
-    a.screenHeight = screenHeight;
-    return a;
   }
 
   public Vec2 toReal(double x, double y) {
@@ -34,8 +23,8 @@ public class RealScreenConverter {
 
   public Vec2 toReal(Vec2 screenPoint) {
     return Vec2.xy(
-      (screenPoint.x - (deltaX + screenWidth / 2)) / kx,
-      (screenPoint.y - (deltaY + screenHeight / 2)) / ky
+      (screenPoint.x - deltaX) / kx,
+      (screenPoint.y - deltaY) / ky
     );
   }
 

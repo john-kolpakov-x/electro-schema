@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.nio.file.Paths;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Launcher {
 
@@ -30,11 +31,30 @@ public class Launcher {
 
     frame.setContentPane(paintPanel);
 
+    var refreshing = new AtomicBoolean(true);
+    var refreshThread = new Thread(() -> {
+      while (refreshing.get()) {
+
+        try {
+          //noinspection BusyWait
+          Thread.sleep(1000 / 24);
+        } catch (InterruptedException e) {
+          return;
+        }
+
+        paintPanel.repaint();
+
+      }
+    });
+
+    refreshThread.start();
+
     frame.addWindowListener(new WindowAdapter() {
       @Override
       public void windowClosing(WindowEvent e) {
         System.out.println("Fz1fD1k4Hb :: windowClosing");
         frame.dispose();
+        refreshing.set(false);
       }
 
       @Override
