@@ -5,6 +5,7 @@ import kz.pompei.electro_schema.frontend.key.KeyCommand;
 import kz.pompei.electro_schema.frontend.key.KeyCommandAppender;
 import kz.pompei.electro_schema.frontend.model.FigureRect;
 import kz.pompei.electro_schema.frontend.model.Scene;
+import kz.pompei.electro_schema.frontend.model.updates.SelectFigureById;
 import kz.pompei.electro_schema.frontend.pen.GraphContext;
 import kz.pompei.electro_schema.frontend.pen.Vec2;
 
@@ -52,7 +53,28 @@ public class Figure {
 
       @Override
       public void execute(KeyEvent e) {
-        System.out.println("K27QPKdG64 :: Pushed Ctrl Right");
+        var figureRectList = scene.figureRectList();
+
+        var selectedFigureId = scene.selectedFigureId();
+        if (selectedFigureId == null) {
+          if (figureRectList.isEmpty()) return;
+          var newId = figureRectList.get(0).id;
+          scene.apply(SelectFigureById.of(newId));
+          return;
+        }
+        var figureRect = scene.getFigureById(selectedFigureId).orElse(null);
+        if (figureRect == null) return;
+
+        for (int i = 0; i < figureRectList.size(); i++) {
+          if (figureRectList.get(i).id.equals(selectedFigureId)) {
+            int j = i + 1;
+            if (j < figureRectList.size()) {
+              scene.apply(SelectFigureById.of(figureRectList.get(j).id));
+              return;
+            }
+          }
+        }
+
       }
     });
 
@@ -78,7 +100,28 @@ public class Figure {
 
       @Override
       public void execute(KeyEvent e) {
-        System.out.println("wt9fmT5GxE :: Pushed Ctrl Left");
+        var figureRectList = scene.figureRectList();
+
+        var selectedFigureId = scene.selectedFigureId();
+        if (selectedFigureId == null) {
+          if (figureRectList.isEmpty()) return;
+          var newId = figureRectList.get(figureRectList.size() - 1).id;
+          scene.apply(SelectFigureById.of(newId));
+          return;
+        }
+        var figureRect = scene.getFigureById(selectedFigureId).orElse(null);
+        if (figureRect == null) return;
+
+        for (int i = 0; i < figureRectList.size(); i++) {
+          if (figureRectList.get(i).id.equals(selectedFigureId)) {
+            int j = i - 1;
+            if (j >= 0) {
+              scene.apply(SelectFigureById.of(figureRectList.get(j).id));
+              return;
+            }
+          }
+        }
+
       }
     });
 

@@ -1,10 +1,12 @@
 package kz.pompei.electro_schema.frontend.model;
 
 import kz.pompei.electro_schema.frontend.ids.Id;
+import kz.pompei.electro_schema.frontend.model.updates.SelectFigureById;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class Scene {
 
@@ -27,4 +29,20 @@ public class Scene {
     return selectedFigureId;
   }
 
+  public Optional<FigureRect> getFigureById(Id id) {
+    if (id == null) return Optional.empty();
+    for (FigureRect figureRect : figureRectList) {
+      if (id.equals(figureRect.id)) {
+        return Optional.of(figureRect);
+      }
+    }
+    return Optional.empty();
+  }
+
+  public void apply(SceneUpdate sceneUpdate) {
+    if (sceneUpdate instanceof SelectFigureById x) {
+      selectedFigureId = x.newSelectedId;
+      return;
+    }
+  }
 }
