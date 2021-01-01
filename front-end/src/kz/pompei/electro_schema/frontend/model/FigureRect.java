@@ -3,13 +3,15 @@ package kz.pompei.electro_schema.frontend.model;
 import kz.pompei.electro_schema.frontend.ids.Id;
 import kz.pompei.electro_schema.frontend.pen.Size2;
 import kz.pompei.electro_schema.frontend.pen.Vec2;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class FigureRect {
-  public final Id    id;
-  public       Vec2  start;
-  public       Size2 size;
+  public
+  final @NonNull  Id    id;
+  public @NonNull Vec2  start = Vec2.xy(0, 0);
+  public @NonNull Size2 size  = Size2.wh(0, 0);
 
   public static FigureRect cr(int x0, int y0, int width, int height) {
     var ret = new FigureRect(Id.rnd());

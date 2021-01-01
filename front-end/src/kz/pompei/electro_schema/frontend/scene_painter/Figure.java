@@ -8,14 +8,15 @@ import kz.pompei.electro_schema.frontend.model.Scene;
 import kz.pompei.electro_schema.frontend.model.updates.SelectFigureById;
 import kz.pompei.electro_schema.frontend.pen.GraphContext;
 import kz.pompei.electro_schema.frontend.pen.Vec2;
+import lombok.NonNull;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 
 public class Figure {
 
-  private final Scene      scene;
-  private final FigureRect source;
+  private final @NonNull Scene      scene;
+  private final @NonNull FigureRect source;
 
   public Figure(Scene scene, FigureRect source) {
     this.scene  = scene;
@@ -136,6 +137,18 @@ public class Figure {
          .delta(0, source.size.h)
          .delta(-source.size.w, 0)
          .delta(0, -source.size.h);
+
+      if (source.id.equals(scene.selectedFigureId())) {
+        pen.setColor(Color.GREEN);
+        var start = source.start.minus(2, 2);
+        var w     = source.size.w + 4;
+        var h     = source.size.h + 4;
+        pen.line(start)
+           .delta(w, 0)
+           .delta(0, h)
+           .delta(-w, 0)
+           .delta(0, -h);
+      }
     }
 
   }
