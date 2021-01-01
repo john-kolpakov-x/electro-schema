@@ -1,4 +1,4 @@
-package kz.pompei.electro_schema.frontend.model;
+package kz.pompei.electro_schema.frontend.scene;
 
 import kz.pompei.electro_schema.frontend.ids.Id;
 import kz.pompei.electro_schema.frontend.pen.Size2;

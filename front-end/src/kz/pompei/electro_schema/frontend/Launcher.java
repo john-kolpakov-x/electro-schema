@@ -2,7 +2,7 @@ package kz.pompei.electro_schema.frontend;
 
 import kz.pompei.electro_schema.frontend.file_saver.FormPositionLook;
 import kz.pompei.electro_schema.frontend.key.KeyStatesImpl;
-import kz.pompei.electro_schema.frontend.model.Scene;
+import kz.pompei.electro_schema.frontend.scene.Scene;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -72,9 +72,7 @@ public class Launcher {
                           return true;
                         });
 
-    SwingUtilities.invokeLater(() -> {
-      frame.setVisible(true);
-    });
+    SwingUtilities.invokeLater(() -> frame.setVisible(true));
   }
 
   private void dispatchEvent(KeyEvent e) {

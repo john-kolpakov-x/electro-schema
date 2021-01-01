@@ -1,7 +1,7 @@
-package kz.pompei.electro_schema.frontend.model;
+package kz.pompei.electro_schema.frontend.scene;
 
 import kz.pompei.electro_schema.frontend.ids.Id;
-import kz.pompei.electro_schema.frontend.model.updates.SelectFigureById;
+import kz.pompei.electro_schema.frontend.scene.updates.SelectFigureById;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,9 +16,9 @@ public class Scene {
   private Id selectedFigureId = Id.rnd();
 
   {
-    figureRectList.add(FigureRect.cr(10, 10, 100, 100).withId(selectedFigureId));
-    figureRectList.add(FigureRect.cr(110, 110, 50, 100));
-    figureRectList.add(FigureRect.cr(180, 110, 50, 100));
+    figureRectList.add(FigureRect.cr(10, 110, 100, 60).withId(selectedFigureId));
+    figureRectList.add(FigureRect.cr(10, 200, 100, 60));
+    figureRectList.add(FigureRect.cr(150, 200, 100, 60));
   }
 
   public List<FigureRect> figureRectList() {

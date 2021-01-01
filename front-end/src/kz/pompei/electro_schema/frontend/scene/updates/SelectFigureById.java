@@ -1,7 +1,7 @@
-package kz.pompei.electro_schema.frontend.model.updates;
+package kz.pompei.electro_schema.frontend.scene.updates;
 
 import kz.pompei.electro_schema.frontend.ids.Id;
-import kz.pompei.electro_schema.frontend.model.SceneUpdate;
+import kz.pompei.electro_schema.frontend.scene.SceneUpdate;
 
 public class SelectFigureById implements SceneUpdate {
   public Id newSelectedId;

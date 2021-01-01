@@ -3,11 +3,13 @@ package kz.pompei.electro_schema.frontend.scene_painter;
 import kz.pompei.electro_schema.frontend.key.HotKey;
 import kz.pompei.electro_schema.frontend.key.KeyCommand;
 import kz.pompei.electro_schema.frontend.key.KeyCommandAppender;
-import kz.pompei.electro_schema.frontend.model.FigureRect;
-import kz.pompei.electro_schema.frontend.model.Scene;
-import kz.pompei.electro_schema.frontend.model.updates.SelectFigureById;
+import kz.pompei.electro_schema.frontend.scene.FigureRect;
+import kz.pompei.electro_schema.frontend.scene.Scene;
+import kz.pompei.electro_schema.frontend.scene.updates.SelectFigureById;
 import kz.pompei.electro_schema.frontend.pen.GraphContext;
 import kz.pompei.electro_schema.frontend.pen.Vec2;
+import kz.pompei.electro_schema.frontend.scene_painter.hot_key_paints.ArrowDirection;
+import kz.pompei.electro_schema.frontend.scene_painter.hot_key_paints.ArrowPainter;
 import lombok.NonNull;
 
 import java.awt.Color;
@@ -36,20 +38,18 @@ public class Figure {
     keyCommandAppender.append(new KeyCommand() {
       @Override
       public HotKey hotKey() {
-        return HotKey.Right.ctrl();
+        return HotKey.Right;
       }
 
       @Override
       public void paint(GraphContext gc) {
-        var center = cmdCenter();
         try (var pen = gc.pen()) {
           pen.setColor(Color.GRAY);
-          pen.pin(center);
-          pen.line(center)
-             .moveDelta(5, 0)
-             .delta(15, 0)
-             .delta(-5, 4).moveDelta(5, -4)
-             .delta(-5, -4).moveDelta(5, 4);
+          ArrowPainter.builder()
+                      .direction(ArrowDirection.RIGHT)
+                      .begin(cmdCenter())
+                      .build()
+                      .paint(pen);
         }
       }
 
@@ -83,20 +83,18 @@ public class Figure {
     keyCommandAppender.append(new KeyCommand() {
       @Override
       public HotKey hotKey() {
-        return HotKey.Left.ctrl();
+        return HotKey.Left;
       }
 
       @Override
       public void paint(GraphContext gc) {
-        var center = cmdCenter();
         try (var pen = gc.pen()) {
           pen.setColor(Color.GRAY);
-          pen.pin(center);
-          pen.line(center)
-             .moveDelta(-5, 0)
-             .delta(-15, 0)
-             .delta(5, 4).moveDelta(-5, -4)
-             .delta(5, -4).moveDelta(-5, 4);
+          ArrowPainter.builder()
+                      .direction(ArrowDirection.LEFT)
+                      .begin(cmdCenter())
+                      .build()
+                      .paint(pen);
         }
       }
 

@@ -3,7 +3,7 @@ package kz.pompei.electro_schema.frontend.scene_painter;
 import kz.pompei.electro_schema.frontend.key.KeyCommand;
 import kz.pompei.electro_schema.frontend.key.KeyCommandAppenderImpl;
 import kz.pompei.electro_schema.frontend.key.KeyStates;
-import kz.pompei.electro_schema.frontend.model.Scene;
+import kz.pompei.electro_schema.frontend.scene.Scene;
 import kz.pompei.electro_schema.frontend.pen.GraphContext;
 import lombok.NonNull;
 

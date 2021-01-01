@@ -2,7 +2,7 @@ package kz.pompei.electro_schema.frontend;
 
 import kz.pompei.electro_schema.frontend.key.KeyCommand;
 import kz.pompei.electro_schema.frontend.key.KeyStates;
-import kz.pompei.electro_schema.frontend.model.Scene;
+import kz.pompei.electro_schema.frontend.scene.Scene;
 import kz.pompei.electro_schema.frontend.pen.GraphContextImpl;
 import kz.pompei.electro_schema.frontend.pen.RealScreenConverter;
 import kz.pompei.electro_schema.frontend.scene_painter.ScenePainter;
