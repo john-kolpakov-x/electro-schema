@@ -13,6 +13,7 @@ import lombok.NonNull;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 
+@SuppressWarnings("ClassCanBeRecord")
 public class Figure {
 
   private final @NonNull Scene      scene;

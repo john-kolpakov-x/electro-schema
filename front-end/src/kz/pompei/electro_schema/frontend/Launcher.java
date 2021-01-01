@@ -1,6 +1,7 @@
 package kz.pompei.electro_schema.frontend;
 
 import kz.pompei.electro_schema.frontend.file_saver.FormPositionLook;
+import kz.pompei.electro_schema.frontend.key.KeyStatesImpl;
 import kz.pompei.electro_schema.frontend.model.Scene;
 
 import javax.swing.JFrame;
@@ -15,6 +16,14 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class Launcher {
 
   public static void main(String[] args) {
+    new Launcher().execute();
+  }
+
+  KeyStatesImpl keyStates  = new KeyStatesImpl();
+  Scene         scene      = new Scene();
+  TopPaintPanel paintPanel = new TopPaintPanel(scene, keyStates);
+
+  public void execute() {
     var mainFormDir = Paths.get("build").resolve("main");
 
     var frame = new JFrame();
@@ -24,10 +33,6 @@ public class Launcher {
 
     var formPositionLook = new FormPositionLook(mainFormDir.resolve("positions").toFile());
     formPositionLook.register(frame, "main-form");
-
-    var scene = new Scene();
-
-    var paintPanel = new TopPaintPanel(scene);
 
     frame.setContentPane(paintPanel);
 
@@ -52,29 +57,51 @@ public class Launcher {
     frame.addWindowListener(new WindowAdapter() {
       @Override
       public void windowClosing(WindowEvent e) {
-        System.out.println("Fz1fD1k4Hb :: windowClosing");
         frame.dispose();
-        refreshing.set(false);
       }
 
       @Override
       public void windowClosed(WindowEvent e) {
-        System.out.println("JWw6uUIwOe :: windowClosed");
+        refreshing.set(false);
       }
     });
 
     KeyboardFocusManager.getCurrentKeyboardFocusManager()
                         .addKeyEventDispatcher((KeyEvent e) -> {
-                          if (e.getID() == KeyEvent.KEY_PRESSED) {
-                            paintPanel.onKeyboardEvent(e);
-                          }
+                          dispatchEvent(e);
                           return true;
                         });
 
     SwingUtilities.invokeLater(() -> {
       frame.setVisible(true);
-      System.out.println("Zfi6pY5N70 frame visibility opened");
     });
+  }
+
+  private void dispatchEvent(KeyEvent e) {
+    if (e.getID() == KeyEvent.KEY_PRESSED || e.getID() == KeyEvent.KEY_RELEASED) {
+      if (e.getKeyCode() == KeyEvent.VK_SHIFT) {
+        keyStates.isShiftDown = e.getID() == KeyEvent.KEY_PRESSED;
+        System.out.println("6K5gah6MY1 :: keyStates = " + keyStates);
+        return;
+      }
+      if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
+        keyStates.isCtrlDown = e.getID() == KeyEvent.KEY_PRESSED;
+        System.out.println("XpMNDl4zw7 :: keyStates = " + keyStates);
+        return;
+      }
+      if (e.getKeyCode() == KeyEvent.VK_ALT) {
+        keyStates.isAltDown = e.getID() == KeyEvent.KEY_PRESSED;
+        System.out.println("V5nv1h4xnM :: keyStates = " + keyStates);
+        return;
+      }
+      if (e.getKeyCode() == KeyEvent.VK_CAPS_LOCK) {
+        return;
+      }
+    }
+
+    if (e.getID() == KeyEvent.KEY_PRESSED) {
+      paintPanel.onKeyboardEvent(e);
+    }
   }
 
 }

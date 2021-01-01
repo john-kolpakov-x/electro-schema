@@ -50,4 +50,8 @@ public class HotKey {
   public boolean doesItMatch(KeyEvent e) {
     return e.getKeyCode() == code && mod.doesItMatch(e);
   }
+
+  public boolean stateEquals(KeyStates keyStates) {
+    return mod.stateEquals(keyStates);
+  }
 }

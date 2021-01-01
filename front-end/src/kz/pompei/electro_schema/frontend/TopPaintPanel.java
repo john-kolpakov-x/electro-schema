@@ -1,6 +1,7 @@
 package kz.pompei.electro_schema.frontend;
 
 import kz.pompei.electro_schema.frontend.key.KeyCommand;
+import kz.pompei.electro_schema.frontend.key.KeyStates;
 import kz.pompei.electro_schema.frontend.model.Scene;
 import kz.pompei.electro_schema.frontend.pen.GraphContextImpl;
 import kz.pompei.electro_schema.frontend.pen.RealScreenConverter;
@@ -9,7 +10,6 @@ import kz.pompei.electro_schema.frontend.scene_painter.ScenePainter;
 import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-import java.util.List;
 
 
 public class TopPaintPanel extends JPanel {
@@ -18,8 +18,8 @@ public class TopPaintPanel extends JPanel {
 
   private final RealScreenConverter realScreenConverter = new RealScreenConverter();
 
-  public TopPaintPanel(Scene scene) {
-    this.scenePainter = new ScenePainter(scene);
+  public TopPaintPanel(Scene scene, KeyStates keyStates) {
+    this.scenePainter = new ScenePainter(scene, keyStates);
   }
 
   @Override
@@ -41,7 +41,8 @@ public class TopPaintPanel extends JPanel {
       }
     }
 
+    System.out.println("N47h18b333 e = " + e);
 
-    System.out.println("y0xi1G6J2B e = " + e);
   }
+
 }

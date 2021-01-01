@@ -26,4 +26,10 @@ public class HotKeyModifiers {
   public boolean doesItMatch(KeyEvent e) {
     return shift == e.isShiftDown() && ctrl == e.isControlDown() && alt == e.isAltDown();
   }
+
+  public boolean stateEquals(KeyStates keyStates) {
+    return shift == keyStates.isShiftDown()
+      && ctrl == keyStates.isCtrlDown()
+      && alt == keyStates.isAltDown();
+  }
 }
