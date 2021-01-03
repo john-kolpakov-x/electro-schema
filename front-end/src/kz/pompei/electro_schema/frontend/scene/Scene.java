@@ -10,30 +10,30 @@ import java.util.Optional;
 
 public class Scene {
 
-  private final List<FigureRect> figureRectList = new ArrayList<>();
+  private final List<LeftTopRect> leftTopRectList = new ArrayList<>();
 
   @SuppressWarnings("FieldMayBeFinal")
   private Id selectedFigureId = Id.rnd();
 
   {
-    figureRectList.add(FigureRect.cr(10, 110, 100, 60).withId(selectedFigureId));
-    figureRectList.add(FigureRect.cr(10, 200, 100, 60));
-    figureRectList.add(FigureRect.cr(150, 200, 100, 60));
+    leftTopRectList.add(LeftTopRect.cr(10, 110, 100, 60).withId(selectedFigureId));
+    leftTopRectList.add(LeftTopRect.cr(10, 200, 100, 60));
+    leftTopRectList.add(LeftTopRect.cr(150, 200, 100, 60));
   }
 
-  public List<FigureRect> figureRectList() {
-    return Collections.unmodifiableList(figureRectList);
+  public List<LeftTopRect> figureRectList() {
+    return Collections.unmodifiableList(leftTopRectList);
   }
 
   public Id selectedFigureId() {
     return selectedFigureId;
   }
 
-  public Optional<FigureRect> getFigureById(Id id) {
+  public Optional<LeftTopRect> getFigureById(Id id) {
     if (id == null) return Optional.empty();
-    for (FigureRect figureRect : figureRectList) {
-      if (id.equals(figureRect.id)) {
-        return Optional.of(figureRect);
+    for (LeftTopRect leftTopRect : leftTopRectList) {
+      if (id.equals(leftTopRect.id)) {
+        return Optional.of(leftTopRect);
       }
     }
     return Optional.empty();

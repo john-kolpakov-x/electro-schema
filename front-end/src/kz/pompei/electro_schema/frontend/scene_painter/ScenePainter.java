@@ -22,7 +22,7 @@ public class ScenePainter {
   }
 
   public List<Figure> figureList() {
-    return scene.figureRectList().stream().map(source -> new Figure(scene, source)).collect(Collectors.toList());
+    return scene.figureRectList().stream().map(source -> new Figure_LeftTopRect(scene, source)).collect(Collectors.toList());
   }
 
 
