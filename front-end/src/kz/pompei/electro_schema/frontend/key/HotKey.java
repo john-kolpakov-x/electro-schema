@@ -32,10 +32,9 @@ public class HotKey {
 
   public static final HotKey R     = new HotKey(KeyEvent.VK_R);
   public static final HotKey Right = new HotKey(KeyEvent.VK_RIGHT);
-  public static final HotKey Down = new HotKey(KeyEvent.VK_DOWN);
-  public static final HotKey Up = new HotKey(KeyEvent.VK_UP);
+  public static final HotKey Down  = new HotKey(KeyEvent.VK_DOWN);
+  public static final HotKey Up    = new HotKey(KeyEvent.VK_UP);
   public static final HotKey Left  = new HotKey(KeyEvent.VK_LEFT);
-
 
   public HotKey shift() {
     return with(HotKeyModifier.SHIFT);
