@@ -1,3 +1,4 @@
 rootProject.name = 'electro-schema'
 
 include "front-end"
+include "dom-core"
