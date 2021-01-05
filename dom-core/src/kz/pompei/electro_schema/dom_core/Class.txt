@@ -3,7 +3,8 @@ package kz.pompei.electro_schema.dom_core.wow.__SUB_PACK__;
 public class __CLASS__ {
 
   public void print() {
-    System.out.println("__RND001__ :: Hi world");
+    System.out.println("__RND001__ :: Hi " + getClass());
+    __PRINT_CLASS__
   }
 
 }

@@ -1,10 +1,8 @@
 package kz.pompei.electro_schema.dom_core;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -48,9 +46,15 @@ public class Launcher {
     public final String subPackage;
     public       String content;
 
+    public ClassData callPrint = null;
+
     public ClassData(String name, String subPackage) {
       this.name       = name;
       this.subPackage = subPackage;
+    }
+
+    public String fullClassName() {
+      return "kz.pompei.electro_schema.dom_core.wow" + subPackage.replace('/', '.') + '.' + name;
     }
 
     @Override
@@ -62,10 +66,19 @@ public class Launcher {
     }
 
     void loadContent() {
+
+      String printClass = "";
+      if (callPrint != null) {
+        printClass = "new " + callPrint.fullClassName() + "().print();";
+      }
+
       content = TEMPLATE_CONTENT.replaceAll("__SUB_PACK__", subPackage.substring(1).replace('/', '.'))
                                 .replaceAll("__CLASS__", name)
                                 .replaceAll("__RND001__", rndInt())
+                                .replaceAll("__PRINT_CLASS__", printClass)
       ;
+
+
     }
 
     private void save() {
@@ -84,7 +97,7 @@ public class Launcher {
 
     List<ClassData> list = new ArrayList<>();
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 100; i++) {
       String I = rndInt();
 
       String name = "Class" + I;
@@ -97,13 +110,17 @@ public class Launcher {
       list.add(new ClassData(name, subPackage));
     }
 
+    for (int i = 0; i < list.size(); i++) {
+      ClassData classData = list.get(i);
+      int       j         = i + 1;
+      if (j < list.size()) {
+        classData.callPrint = list.get(j);
+      }
+    }
+
     list.forEach(ClassData::loadContent);
     list.forEach(ClassData::save);
 
-    for (ClassData classData : list) {
-      System.out.println(classData);
-    }
-
-    System.out.println("2K58FroY0w :: Hi world");
+    System.out.println("First class : " + list.get(0).fullClassName());
   }
 }
