@@ -1,4 +1,4 @@
-package kz.pompei.electro_schema.frontend;
+package kz.pompei.electro_schema.frontend.panels;
 
 import kz.pompei.electro_schema.frontend.key.KeyCommand;
 import kz.pompei.electro_schema.frontend.key.KeyStates;

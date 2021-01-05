@@ -1,7 +1,8 @@
-package kz.pompei.electro_schema.frontend;
+package kz.pompei.electro_schema.frontend.launchers;
 
 import kz.pompei.electro_schema.frontend.file_saver.FormPositionLook;
 import kz.pompei.electro_schema.frontend.key.KeyStatesImpl;
+import kz.pompei.electro_schema.frontend.panels.TopPaintPanel;
 import kz.pompei.electro_schema.frontend.scene.Scene;
 
 import javax.swing.JFrame;
@@ -13,10 +14,10 @@ import java.awt.event.WindowEvent;
 import java.nio.file.Paths;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class Launcher {
+public class LauncherFirst {
 
   public static void main(String[] args) {
-    new Launcher().execute();
+    new LauncherFirst().execute();
   }
 
   KeyStatesImpl keyStates  = new KeyStatesImpl();
