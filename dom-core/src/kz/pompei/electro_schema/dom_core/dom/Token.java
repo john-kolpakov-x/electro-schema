@@ -14,4 +14,6 @@ public interface Token {
 
   List<Token> children();
 
+  void print(StringBuilder out);
+
 }

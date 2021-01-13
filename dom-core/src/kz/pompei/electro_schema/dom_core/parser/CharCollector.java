@@ -9,16 +9,20 @@ import java.util.function.Supplier;
 
 public class CharCollector {
 
+  public final List<ParseError> errorList = new ArrayList<>();
+
   private TokenAppender current = null;
 
   private boolean finished = false;
 
-  public void finish() {
-    throw new RuntimeException("2021-01-12 21:33 Not impl yet: CharCollector.finish");
+  public void finish(Supplier<Pos> pos) {
+    if (current != null) {
+      current.finish(pos);
+    }
   }
 
   public Token result() {
-    throw new RuntimeException("2021-01-12 21:34 Not impl yet: CharCollector.result");
+    return current;
   }
 
   public void acceptChar(char c, Supplier<Pos> pos) {
@@ -28,17 +32,16 @@ public class CharCollector {
 
     if (current == null) {
       if (c == '{' || c == '[' || c == '(') {
-        current = new TokenAppender(c, pos);
+        current = new TokenAppender(c, pos, errorList::add);
         return;
       }
       return;
     }
 
-    if (current.acceptChar(c,pos)) {
+    if (current.acceptChar(c, pos)) {
+      finished = true;
       return;
     }
-
-    finished = true;
 
   }
 }
