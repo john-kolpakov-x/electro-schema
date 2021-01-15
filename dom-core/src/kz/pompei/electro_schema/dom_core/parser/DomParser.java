@@ -22,7 +22,7 @@ public class DomParser {
 
   private final List<DomError> domErrors    = new ArrayList<>();
   private final Token          token;
-  private       Branch         resultBranch = null;
+  private final BranchImpl     resultBranch = new BranchImpl(domErrors);
 
   public DomParser(Token token) {
     this.token = token;
@@ -54,7 +54,13 @@ public class DomParser {
   }
 
   private void doParse() {
-    throw new RuntimeException("2021-01-15 21:33 Not impl yet: DomParser.doParse");
+
+    if (token.charType() != '{') {
+      domErrors.add(new DomError("Mz2XAsuOdf", "Illegal root token", token.begin(), token.end()));
+      return;
+    }
+
+    resultBranch.parseToken(token);
   }
 
 }
