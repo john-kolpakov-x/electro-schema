@@ -1,7 +1,7 @@
 package kz.pompei.electro_schema.dom_core.parser;
 
 import kz.pompei.electro_schema.dom_core.dom.Pos;
-import kz.pompei.electro_schema.dom_core.dom.Token;
+import kz.pompei.electro_schema.dom_core.parser.token.Token;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;

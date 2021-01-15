@@ -1,7 +1,9 @@
 package kz.pompei.electro_schema.dom_core.parser;
 
 import kz.pompei.electro_schema.dom_core.dom.Pos;
-import kz.pompei.electro_schema.dom_core.dom.Token;
+import kz.pompei.electro_schema.dom_core.parser.token.ParseError;
+import kz.pompei.electro_schema.dom_core.parser.token.Token;
+import kz.pompei.electro_schema.dom_core.parser.token.TokenParseResult;
 import lombok.SneakyThrows;
 
 import java.io.ByteArrayInputStream;
@@ -11,6 +13,9 @@ import java.util.List;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class TokenParser {
+  public static TokenParseResult parse(String content) {
+    return parse(new ByteArrayInputStream(content.getBytes(UTF_8)));
+  }
 
   private final char[] content;
   private       int    index = 0;
@@ -29,10 +34,10 @@ public class TokenParser {
     str.getChars(0, str.length(), content, 0);
   }
 
-  public static ParseResult parse(InputStream inputStream) {
+  public static TokenParseResult parse(InputStream inputStream) {
     var parser = new TokenParser(inputStream);
     parser.doParse();
-    return new ParseResult() {
+    return new TokenParseResult() {
       @Override
       public Token token() {
         return parser.result();
@@ -43,10 +48,6 @@ public class TokenParser {
         return parser.charCollector.errorList;
       }
     };
-  }
-
-  public static ParseResult parse(String content) {
-    return parse(new ByteArrayInputStream(content.getBytes(UTF_8)));
   }
 
   private Token result() {

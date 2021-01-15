@@ -1,7 +1,8 @@
 package kz.pompei.electro_schema.dom_core.parser;
 
 import kz.pompei.electro_schema.dom_core.dom.Pos;
-import kz.pompei.electro_schema.dom_core.dom.Token;
+import kz.pompei.electro_schema.dom_core.parser.token.ParseError;
+import kz.pompei.electro_schema.dom_core.parser.token.Token;
 
 import java.util.ArrayList;
 import java.util.List;

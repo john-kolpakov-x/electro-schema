@@ -1,5 +1,7 @@
 package kz.pompei.electro_schema.dom_core.parser;
 
+import kz.pompei.electro_schema.dom_core.parser.token.ParseError;
+import kz.pompei.electro_schema.dom_core.parser.token.TokenParseResult;
 import org.testng.annotations.Test;
 
 public class TokenParserTest {
@@ -9,7 +11,7 @@ public class TokenParserTest {
 
     String in = "{hello world}";
 
-    ParseResult pr = TokenParser.parse(in);
+    TokenParseResult pr = TokenParser.parse(in);
 
     StringBuilder out = new StringBuilder();
 
@@ -29,7 +31,7 @@ public class TokenParserTest {
       }
       """;
 
-    ParseResult pr = TokenParser.parse(in);
+    TokenParseResult pr = TokenParser.parse(in);
 
     StringBuilder out = new StringBuilder();
 
@@ -53,7 +55,7 @@ public class TokenParserTest {
       }
       """;
 
-    ParseResult pr = TokenParser.parse(in);
+    TokenParseResult pr = TokenParser.parse(in);
 
     StringBuilder out = new StringBuilder();
     pr.token().print(out);

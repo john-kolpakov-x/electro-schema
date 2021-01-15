@@ -1,11 +1,10 @@
-package kz.pompei.electro_schema.dom_core.parser;
+package kz.pompei.electro_schema.dom_core.dom;
 
-import kz.pompei.electro_schema.dom_core.dom.Pos;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @SuppressWarnings("ClassCanBeRecord")
-public class ParseError {
+public class DomError {
   public final String posCode;
   public final String message;
   public final Pos    begin;
@@ -13,6 +12,6 @@ public class ParseError {
 
   @Override
   public String toString() {
-    return "ParseError{" + message + '}';
+    return "DomError{" + message + '}';
   }
 }
