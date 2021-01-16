@@ -2,6 +2,7 @@ package kz.pompei.electro_schema.dom_core.parser;
 
 import kz.pompei.electro_schema.dom_core.dom.Pos;
 import kz.pompei.electro_schema.dom_core.parser.token.Token;
+import kz.pompei.electro_schema.dom_core.parser.token.TokenType;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -13,8 +14,8 @@ public class TextToken implements Token {
   private final Pos    end;
 
   @Override
-  public char charType() {
-    return 'T';
+  public TokenType type() {
+    return TokenType.TEXT;
   }
 
   @Override
@@ -44,6 +45,11 @@ public class TextToken implements Token {
 
   @Override
   public String toString() {
+    return text;
+  }
+
+  @Override
+  public String innerText() {
     return text;
   }
 }

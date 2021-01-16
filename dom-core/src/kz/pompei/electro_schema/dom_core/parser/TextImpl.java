@@ -3,8 +3,23 @@ package kz.pompei.electro_schema.dom_core.parser;
 import kz.pompei.electro_schema.dom_core.dom.Text;
 
 public class TextImpl implements Text {
+
+  private final String text;
+
+  public TextImpl(String text) {
+    this.text = text;
+  }
+
+  @Override
+  public void print(StringBuilder out, int beginSpace) {
+    out.append("  ".repeat(beginSpace))
+       .append('(')
+       .append(text)
+       .append(")\n");
+  }
+
   @Override
   public String content() {
-    throw new RuntimeException("2021-01-15 22:17 Not impl yet: TextImpl.content");
+    return text;
   }
 }

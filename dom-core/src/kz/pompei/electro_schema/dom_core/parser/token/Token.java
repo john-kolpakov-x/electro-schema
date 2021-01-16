@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface Token {
 
-  char charType();
+  TokenType type();
 
   String text();
 
@@ -15,6 +15,8 @@ public interface Token {
   Pos end();
 
   List<Token> children();
+
+  String innerText();
 
   void print(StringBuilder out);
 

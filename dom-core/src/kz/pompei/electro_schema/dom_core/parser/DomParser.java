@@ -6,6 +6,7 @@ import kz.pompei.electro_schema.dom_core.dom.ParseResult;
 import kz.pompei.electro_schema.dom_core.parser.token.ParseError;
 import kz.pompei.electro_schema.dom_core.parser.token.Token;
 import kz.pompei.electro_schema.dom_core.parser.token.TokenParseResult;
+import kz.pompei.electro_schema.dom_core.parser.token.TokenType;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -55,7 +56,7 @@ public class DomParser {
 
   private void doParse() {
 
-    if (token.charType() != '{') {
+    if (token.type() != TokenType.BRACE) {
       domErrors.add(new DomError("Mz2XAsuOdf", "Illegal root token", token.begin(), token.end()));
       return;
     }

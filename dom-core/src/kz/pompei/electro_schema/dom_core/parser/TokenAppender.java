@@ -3,6 +3,7 @@ package kz.pompei.electro_schema.dom_core.parser;
 import kz.pompei.electro_schema.dom_core.dom.Pos;
 import kz.pompei.electro_schema.dom_core.parser.token.ParseError;
 import kz.pompei.electro_schema.dom_core.parser.token.Token;
+import kz.pompei.electro_schema.dom_core.parser.token.TokenType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,14 +24,19 @@ public class TokenAppender implements Token {
       throw new RuntimeException("ckiNiCL13j :: Illegal char " + c);
     }
 
-    charType           = c;
-    begin              = pos.get();
+    this.charType      = c;
+    this.begin         = pos.get();
     this.errorAcceptor = errorAcceptor;
   }
 
   @Override
-  public char charType() {
-    return charType;
+  public TokenType type() {
+    return switch (charType) {
+      case '{' -> TokenType.BRACE;
+      case '[' -> TokenType.SQUARE;
+      case '(' -> TokenType.ROUND;
+      default -> throw new RuntimeException("pTKB4dmJF8 charType = " + charType);
+    };
   }
 
   @Override
@@ -106,10 +112,6 @@ public class TokenAppender implements Token {
 
   @Override
   public void print(StringBuilder out) {
-//    out.append('.').append(charType).append('.');
-//    children.forEach(x -> x.print(out));
-//    out.append('.').append(CharUtil.pair(charType)).append('.');
-
     out.append(charType);
     children.forEach(x -> x.print(out));
     out.append(pairBr(charType));
@@ -117,6 +119,13 @@ public class TokenAppender implements Token {
 
   public void finish(Supplier<Pos> pos) {
     endText(pos);
+  }
+
+  @Override
+  public String innerText() {
+    StringBuilder out = new StringBuilder();
+    children.forEach(x -> x.print(out));
+    return out.toString();
   }
 
   @Override

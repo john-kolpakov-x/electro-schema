@@ -12,6 +12,6 @@ public class DomError {
 
   @Override
   public String toString() {
-    return "DomError{" + message + '}';
+    return posCode + " :: " + message + " @ " + begin + "…" + end;
   }
 }

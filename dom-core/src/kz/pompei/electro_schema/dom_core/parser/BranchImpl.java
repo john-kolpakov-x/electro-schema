@@ -3,7 +3,9 @@ package kz.pompei.electro_schema.dom_core.parser;
 import kz.pompei.electro_schema.dom_core.dom.Branch;
 import kz.pompei.electro_schema.dom_core.dom.DomError;
 import kz.pompei.electro_schema.dom_core.dom.Node;
+import kz.pompei.electro_schema.dom_core.parser.flow.TextFlow;
 import kz.pompei.electro_schema.dom_core.parser.token.Token;
+import kz.pompei.electro_schema.dom_core.parser.token.TokenType;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -13,12 +15,12 @@ import java.util.Set;
 
 public class BranchImpl implements Branch {
   private final List<DomError> domErrors;
+  private final Grouper        grouper;
 
   public BranchImpl(List<DomError> domErrors) {
     this.domErrors = domErrors;
+    grouper        = new Grouper(domErrors);
   }
-
-  private final Grouper grouper=new Grouper();
 
   @Override
   public Set<String> groups() {
@@ -48,6 +50,39 @@ public class BranchImpl implements Branch {
   }
 
   public void parseToken(Token token) {
-    throw new RuntimeException("2021-01-15 22:22 Not impl yet: BranchImpl.parseToken");
+    if (token.type() != TokenType.BRACE) {
+      throw new RuntimeException("cRJeLr4J55 :: Illegal charType = " + token.type());
+    }
+
+    List<TextFlow> textFlowList = new ArrayList<>();
+
+    for (Token child : token.children()) {
+      switch (child.type()) {
+        case BRACE -> {
+          BranchImpl childBranch = new BranchImpl(domErrors);
+          childBranch.parseToken(child);
+          children.add(childBranch);
+        }
+
+        case ROUND -> children.add(new TextImpl(child.innerText()));
+
+        case TEXT, SQUARE -> textFlowList.add(new TextFlow(
+          child.type().flowType(), child.innerText(), child.begin(), child.end()
+        ));
+      }
+    }
+
+    grouper.parse(textFlowList);
+
+  }
+
+  @Override
+  public void print(StringBuilder out, int beginSpace) {
+    out.append("  ".repeat(beginSpace)).append("{\n");
+    grouper.print(out, beginSpace + 1);
+    for (Node child : children) {
+      child.print(out, beginSpace + 1);
+    }
+    out.append("  ".repeat(beginSpace)).append("}\n");
   }
 }
