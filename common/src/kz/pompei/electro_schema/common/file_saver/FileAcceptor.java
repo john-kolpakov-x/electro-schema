@@ -1,4 +1,4 @@
-package kz.pompei.electro_schema.frontend.file_saver;
+package kz.pompei.electro_schema.common.file_saver;
 
 import java.io.IOException;
 import java.nio.file.Files;

@@ -1,6 +1,6 @@
 package kz.pompei.electro_schema.frontend.launchers;
 
-import kz.pompei.electro_schema.frontend.file_saver.FormPositionLook;
+import kz.pompei.electro_schema.common.file_saver.FormPositionLook;
 import kz.pompei.electro_schema.frontend.key.KeyStatesImpl;
 import kz.pompei.electro_schema.frontend.panels.TopPaintPanel;
 import kz.pompei.electro_schema.frontend.scene.Scene;
