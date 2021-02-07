@@ -8,4 +8,7 @@ dependencies {
   testCompileOnly "org.projectlombok:lombok:$lombokVersion"
   testAnnotationProcessor "org.projectlombok:lombok:$lombokVersion"
 
+  compile "org.postgresql:postgresql:42.2.18"
+  testCompile "kz.greetgo:greetgo.util:2.0.0"
+
 }
