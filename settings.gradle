@@ -3,3 +3,5 @@ rootProject.name = 'electro-schema'
 include "front-end"
 include "dom-core"
 include "common"
+include "bml"
+include "lib-bin"
